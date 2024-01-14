@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace OTUS_L18_3_HW
 {
@@ -9,9 +10,9 @@ namespace OTUS_L18_3_HW
             var list = new List<string>() { "Земля", "Лимония", "Марс", "Pandora", "Марс" };
             var cp = new CatalogPlanets();
             var counter = 0;
-            foreach (var item in list)
+            foreach (var name in list)
             {
-                PrintInfo(cp.GetPlanet(item, item => 
+                PrintInfo(cp.GetPlanet(name, item => 
                 {
                     counter++;
                     

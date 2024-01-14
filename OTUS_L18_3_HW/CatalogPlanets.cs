@@ -2,6 +2,7 @@
 {
     internal class CatalogPlanets
     {
+        private readonly List<Planet> _planets;
         public CatalogPlanets()
         {
             var p1 = new Planet(2, "Венера", 12103.6, null);
@@ -9,8 +10,7 @@
             var p3 = new Planet(4, "Марс", 6780, p2);
 
             _planets = new List<Planet>() {p1,p2,p3};
-        }
-        private List<Planet> _planets { get; }
+        }        
 
         public (ushort? position, double? equator, string? err) GetPlanet(string namePlanet, Func<string, string> planetValidator)
         {
@@ -24,11 +24,12 @@
                 ).ToList();
 
             if (infoPlanet.Count == 0)
+            {
                 return (null, null, planetValidator(namePlanet) ?? "Не удалось найти планету");
+            }
 
             return (infoPlanet[0].pos, infoPlanet[0].equ, planetValidator(namePlanet));
 
         }
-
     }
 }
